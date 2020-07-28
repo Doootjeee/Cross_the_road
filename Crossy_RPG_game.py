@@ -55,8 +55,14 @@ class Game:
 
         #all the characters
         player_character = PlayerCharacter('player.png', 375, 700, 50, 50)
-        enemy_0 = EnemyCharacter('enemy.png', 20, 400, 50, 50)
+        enemy_0 = EnemyCharacter('enemy.png', 20, 600, 50, 50)
         enemy_0.SPEED *= level_speed
+        
+        enemy_1 = EnemyCharacter('enemy.png', self.width - 40, 400, 50, 50)
+        enemy_1.SPEED *= level_speed
+        
+        enemy_2 = EnemyCharacter('enemy.png', 20, 200, 50, 50)
+        enemy_2.SPEED *= level_speed
 
         
         treasure = GameObject('treasure.png', 375, 50, 50, 50)
@@ -105,10 +111,19 @@ class Game:
             enemy_0.move(self.width)
             #draw the enemy
             enemy_0.draw(self.game_screen)
+            
+            #adding enemies when level increases
+            if level_speed > 2:
+                enemy_1.move(self.width)
+                enemy_1.draw(self.game_screen)
+            if level_speed > 3.5:
+                enemy_2.move(self.width)
+                enemy_2.draw(self.game_screen)
+                
 
             #collision detection & win/ lose condition
             #for enemy in enemies:
-            if player_character.detect_collision(enemy_0):
+            if player_character.detect_collision(enemy_0) or player_character.detect_collision(enemy_1) or player_character.detect_collision(enemy_2):
                 is_game_over = True
                 did_win = False
                 lose_text = font.render('You lose! :(', True, BLACK_COLOR)
