@@ -45,7 +45,7 @@ class Game:
         background_image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(background_image, (width, height))
 
-    def run_game_loop(self):
+    def run_game_loop(self, level_speed):
         #determing if the game is over
         is_game_over = False
         did_win = False
@@ -56,6 +56,9 @@ class Game:
         #all the characters
         player_character = PlayerCharacter('player.png', 375, 700, 50, 50)
         enemy_0 = EnemyCharacter('enemy.png', 20, 400, 50, 50)
+        enemy_0.SPEED *= level_speed
+
+        
         treasure = GameObject('treasure.png', 375, 50, 50, 50)
 
         #this is the main game loop, used to update all gameplay such as movement, checks and graphics
@@ -131,7 +134,7 @@ class Game:
             CLOCK.tick(self.TICK_RATE)
             
         if did_win:
-            self.run_game_loop()
+            self.run_game_loop(level_speed + 0.5)
         else:
             return
 
@@ -215,7 +218,7 @@ pygame.init()
 
 
 new_game = Game('background.png',SCREEN_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT)
-new_game.run_game_loop()
+new_game.run_game_loop(1)
 
 
 
