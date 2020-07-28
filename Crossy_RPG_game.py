@@ -240,21 +240,3 @@ new_game.run_game_loop(1)
 #Quit pygame and the program
 pygame.quit()
 quit()
-
-
-
-
-#loading in our own images
-#player_image = pygame.image.load('player.png')
-#Scaling the size of the image
-#player_image = pygame.transform.scale(player_image, (50, 50))
-
-#drawing something on the screen (in this case a red square) (x, y, width, height)
-#pygame.draw.rect(game_screen, RED_COLOR, [650, 350, 100, 100 ] )
-
-#drawing a circle on top op of the square (x, y, radius)
-#pygame.draw.circle(game_screen, GREEN_COLOR, (100,400), 50)
-
-#calling our own image in the game, using the blit function (x, y)
-#this has to be done within the game loop because it has to be updated/rendered every tick
-#game_screen.blit(player_image, (375, 375))
